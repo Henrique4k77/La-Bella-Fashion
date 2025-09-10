@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card text-center p-4 shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-danger mb-4">Atenção!</h3>
+                    <p class="card-text fs-5">Você tem certeza que deseja excluir o perfil de **{{ usuario.nome }}**?</p>
+                    <p class="card-text text-muted">Esta ação não pode ser desfeita.</p>
+                    <div class="mt-4">
+                        <form action="#" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-lg me-2">Sim, Excluir</button>
+                        </form>
+                        <a href="{% url 'meus_dados' %}" class="btn btn-secondary btn-lg">Não, Voltar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
