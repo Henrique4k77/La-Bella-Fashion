@@ -3,6 +3,14 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2 class="text-center mb-4">Acesse sua conta</h2>
+
+            {# bloco para exibir mensagens do Django #}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} text-center">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
             <form method="post">
                 {% csrf_token %}
                 <div class="mb-3">
