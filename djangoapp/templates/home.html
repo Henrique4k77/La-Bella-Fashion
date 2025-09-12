@@ -5,7 +5,11 @@
         <p class="lead">Sua moda, sua paixão.</p>
         <hr class="my-4">
         <p>Confira nossa nova coleção e descubra peças incríveis para o seu estilo.</p>
-        <a class="btn btn-primary btn-lg" href="{% url 'usuario_cadastrar' %}" role="button">Cadastre-se agora</a>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary btn-lg" href="{% url 'meus_dados' %}" role="button">Ver meus dados</a>
+        {% else %}
+            <a class="btn btn-primary btn-lg" href="{% url 'cadastrar' %}" role="button">Cadastre-se agora</a>
+        {% endif %}
     </div>
 
     <h2 class="mt-5 mb-4 text-center">Destaques da Coleção</h2>
@@ -25,5 +29,5 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 {% endblock %}

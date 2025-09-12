@@ -1,14 +1,20 @@
+# djangoapp/urls.py
+from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from . import views
+from django.conf import settings # Importe as configurações do projeto
+from django.conf.urls.static import static # Importe a função static
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    # página inicial
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
+
+    # todas as URLs do app usuario
     path('usuario/', include('usuario.urls')),
-    path('cadastrar/', views.cadastrar_usuario, name='cadastrar'),
-    
-    # Adicione estas URLs para as páginas de perfil
-    path('meus_dados/', views.meus_dados, name='meus_dados'),
-    path('meus_dados/editar/', views.editar_dados, name='editar_dados'),
-    path('meus_dados/excluir/', views.excluir_perfil, name='excluir_perfil'),
 ]
+
+# Configuração para servir arquivos de mídia apenas em modo de desenvolvimento
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
