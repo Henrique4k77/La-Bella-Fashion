@@ -26,6 +26,7 @@ SECRET_KEY = '********************'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://8000-firebase-la-bella-fashiongit-1757941439576.cluster-c72u3gwiofapkvxrcwjq5zllcu.cloudworkstations.dev']
 
 
 # Application definition
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario',
     'crispy_forms',
-    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
