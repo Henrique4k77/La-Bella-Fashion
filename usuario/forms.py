@@ -13,6 +13,7 @@ class PerfilRegistrationForm(forms.ModelForm):
     class Meta:
         model = Perfil
         fields = ['nome_completo']
+                 
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
