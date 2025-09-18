@@ -7,10 +7,10 @@
         <div class="col-lg-8">
             <div class="card p-4 shadow">
                 <div class="text-center mb-4">
-                    {% if usuario.perfil.foto_perfil %}
-                        <img src="{{ usuario.perfil.foto_perfil.url }}" alt="Foto de perfil" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+                    {% if perfil.foto_perfil %}
+                        <img src="{{ perfil.foto_perfil.url }}" alt="Foto de perfil" class="rounded-circle mb-3 profile-pic">
                     {% else %}
-                        <img src="{% static 'img/default-profile.png' %}" alt="Foto de perfil padrão" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="{% static 'img/default-profile.png' %}" alt="Foto de perfil padrão" class="rounded-circle mb-3 profile-pic">
                     {% endif %}
                     
                     <h2 class="card-title">{{ usuario.username }}</h2>
@@ -21,13 +21,13 @@
                     <h5 class="card-subtitle mb-3 text-muted">Meus Dados</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong>Nome completo:</strong> {{ usuario.perfil.nome_completo }}
+                            <strong>Nome completo:</strong> {{ perfil.nome_completo }}
                         </li>
                         <li class="list-group-item">
-                            <strong>Telefone:</strong> {{ usuario.perfil.telefone }}
+                            <strong>Telefone:</strong> {{ perfil.telefone }}
                         </li>
                         <li class="list-group-item">
-                            <strong>Endereço:</strong> {{ usuario.perfil.endereco }}
+                            <strong>Endereço:</strong> {{ perfil.endereco }}
                         </li>
                     </ul>
                 </div>

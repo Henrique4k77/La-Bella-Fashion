@@ -1,0 +1,9 @@
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.inline-form {
+    display: inline;
+}

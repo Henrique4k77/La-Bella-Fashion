@@ -1,3 +1,4 @@
+
 """
 Django settings for djangoapp project.
 
@@ -25,9 +26,15 @@ SECRET_KEY = 'django-insecure-hd)v$)p2n(dsm&q_d*a=^d-%2@z6+i$ch^m-=6z!fqk+@$-s)1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '.cloudworkstations.dev',
+    'localhost',
+    '127.0.0.1',
+]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-firebase-la-bella-fashiongit-1757941439576.cluster-c72u3gwiofapkvxrcwjq5zllcu.cloudworkstations.dev']
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.cloudworkstations.dev',
+]
 
 # Application definition
 
@@ -41,6 +48,8 @@ INSTALLED_APPS = [
     'usuario',
     'crispy_forms',
     "crispy_bootstrap5",
+    'produtos',
+
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

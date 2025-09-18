@@ -1,18 +1,25 @@
+
 from django import forms
-from django.contrib.auth import get_user_model
-from .models import Perfil # Importamos o nosso novo modelo de Perfil
+from django.contrib.auth.models import User
+from .models import Perfil
 
-# Importa o modelo de usuário padrão do Django
-User = get_user_model()
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput, label='Senha')
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
 
-# Este formulário lida com os campos do modelo de usuário padrão
+class PerfilRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ['nome_completo']
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username', 'email']
 
-# Este formulário lida com os campos do nosso modelo de perfil personalizado
 class PerfilUpdateForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['telefone', 'endereco', 'foto_perfil']
+        fields = ['nome_completo', 'telefone', 'endereco', 'foto_perfil']

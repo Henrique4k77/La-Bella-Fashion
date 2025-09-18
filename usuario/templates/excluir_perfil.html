@@ -10,7 +10,7 @@
                     <p class="card-text fs-5">Você tem certeza que deseja excluir o perfil de **{{ usuario.username }}**?</p>
                     <p class="card-text text-muted">Esta ação não pode ser desfeita.</p>
                     <div class="mt-4">
-                        <form action="{% url 'excluir_perfil' %}" method="post" style="display:inline;">
+                        <form action="{% url 'excluir_perfil' %}" method="post" class="inline-form">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-lg me-2">Sim, Excluir</button>
                         </form>
