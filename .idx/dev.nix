@@ -9,6 +9,10 @@
     # pkgs.go
     pkgs.python311
     pkgs.python311Packages.pip
+    pkgs.python311Packages.django
+    pkgs.python311Packages.pillow
+    pkgs.python311Packages.django-crispy-forms
+    pkgs.python311Packages.django-crispy-bootstrap5
     # pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
   ];

@@ -1,22 +1,15 @@
-# djangoapp/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
-from django.conf import settings
 from django.conf.urls.static import static
+from django.conf import settings
+from .views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # página inicial
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
-
-    # todas as URLs do app usuario
+    path('', home, name='home'),
     path('usuario/', include('usuario.urls')),
+    path('produtos/', include('produtos.urls')),
+    path('pedido/', include('pedido.urls', namespace='pedido')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
-    # todas as URLs do app produtos
-    path('produtos/', include('produtos.urls')),   
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

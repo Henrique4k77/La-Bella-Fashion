@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Finalizar Pedido{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Finalizar Pedido</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Itens do Pedido</h4>
+            <ul class="list-group mb-3">
+                {% for produto in produtos %}
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">{{ produto.nome }}</h6>
+                            <small class="text-muted">Quantidade: {{ carrinho|get_item:produto.id }}</small>
+                        </div>
+                        <span class="text-muted">R$ {{ produto.preco }}</span>
+                    </li>
+                {% endfor %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (BRL)</span>
+                    <strong>R$ {{ total }}</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Resumo</h4>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

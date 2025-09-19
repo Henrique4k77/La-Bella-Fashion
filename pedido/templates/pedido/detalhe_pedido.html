@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhe do Pedido #{{ pedido.id }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detalhe do Pedido #{{ pedido.id }}</h2>
+    <p><strong>Status:</strong> {{ pedido.get_status_display }}</p>
+    <p><strong>Data do Pedido:</strong> {{ pedido.data_pedido|date:"d/m/Y H:i" }}</p>
+    
+    <h4>Itens do Pedido</h4>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Produto</th>
+                <th class="text-center">Quantidade</th>
+                <th class="text-end">Preço Unitário</th>
+                <th class="text-end">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in pedido.itens.all %}
+            <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td class="text-center">{{ item.quantidade }}</td>
+                <td class="text-end">R$ {{ item.preco_unitario|floatformat:2 }}</td>
+                <td class="text-end">R$ {{ item.total_item|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr class="table-light">
+                <td colspan="3" class="text-end"><strong>Total do Pedido:</strong></td>
+                <td class="text-end"><strong>R$ {{ pedido.total|floatformat:2 }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'pedido:lista_pedidos' %}" class="btn btn-primary">Voltar para Meus Pedidos</a>
+    </div>
+</div>
+{% endblock %}

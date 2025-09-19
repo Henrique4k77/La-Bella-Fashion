@@ -7,3 +7,63 @@
 .inline-form {
     display: inline;
 }
+
+/* === Estilos dos cards do catálogo === */
+
+.container.mt-5 .row {
+  align-items: stretch; /* garante colunas com mesma altura */
+}
+
+/* faz cada coluna comportar-se como um flex container (para forçar o card a preencher) */
+.container.mt-5 .row > [class*="col-"] {
+  display: flex;
+  align-items: stretch;
+}
+
+/* força o card a preencher a coluna e remove max-width que possa estar limitando */
+.container.mt-5 .row > [class*="col-"] .card {
+  width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* mesma altura para todas as imagens do card (ajuste a altura se quiser maior/menor) */
+.container.mt-5 .row > [class*="col-"] .card-img-top {
+  display: block;
+  width: 100%;
+  height: 260px;      /* <--- ajuste aqui para 220/250/300 conforme quiser */
+  object-fit: cover;  /* corta proporcionalmente para ficar uniforme */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* corpo do card sempre com altura mínima e botão colado no final */
+.container.mt-5 .row > [class*="col-"] .card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* título em cima, botão em baixo */
+  text-align: center;
+  padding: 16px;
+}
+
+/* pequenos ajustes de espaçamento/fonte */
+.container.mt-5 .row > [class*="col-"] .card-title {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.container.mt-5 .row > [class*="col-"] .card-text {
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.container.mt-5 .row > [class*="col-"] .btn {
+  align-self: center;
+  margin-top: auto;
+}

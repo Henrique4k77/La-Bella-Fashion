@@ -11,8 +11,12 @@
       <h2>{{ produto.nome }}</h2>
       <p>{{ produto.descricao }}</p>
       <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
-      <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
-      <a href="#" class="btn btn-success">Adicionar ao Carrinho</a>
+      <p><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
+      <button hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" 
+              hx-swap="none" 
+              class="btn btn-success">
+        Adicionar ao Carrinho
+      </button>
     </div>
   </div>
 </div>

@@ -1,22 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5">
-  <h2>Catálogo de Produtos</h2>
-  <div class="row">
-    {% for produto in produtos %}
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          {% if produto.imagem %}
-            <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ produto.nome }}</h5>
-            <p class="card-text">R$ {{ produto.preco }}</p>
-            <a href="{% url 'detalhes_produto' produto.id %}" class="btn btn-primary">Ver Detalhes</a>
-          </div>
+    <h2 class="mb-4">Catálogo de Produtos</h2>
+    <div class="row">
+        {% for produto in produtos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if produto.imagem %}
+                    <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ produto.nome }}</h5>
+                    <p class="card-text">{{ produto.descricao|truncatewords:20 }}</p>
+                    <p class="card-text"><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
+                    <a href="{% url 'detalhes_produto' produto.id %}" class="btn btn-primary">Ver Detalhes</a>
+                    <button hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" 
+                            hx-swap="none" 
+                            class="btn btn-success">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
