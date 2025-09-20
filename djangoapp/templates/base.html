@@ -10,50 +10,29 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">La Bella Fashion</a>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'catalogo' %}">Catalogo</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'pedido:ver_carrinho' %}">Carrinho</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'meus_dados' %}">Meus Dados</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'pedido:lista_pedidos' %}">Meus Pedidos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'usuario_login' %}">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'cadastrar' %}">Cadastrar</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+        <h1><a href="{% url 'home' %}" style="text-decoration: none; color: inherit;">La Bella Fashion</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalogo' %}">Catálogo</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'pedido:ver_carrinho' %}">Carrinho</a></li>
+                    <li><a href="{% url 'meus_dados' %}">Meus Dados</a></li>
+                    <li><a href="{% url 'pedido:lista_pedidos' %}">Meus Pedidos</a></li>
+                    <li><a href="{% url 'logout' %}">Sair</a></li>
+                {% else %}
+                    <li><a href="{% url 'usuario_login' %}">Login</a></li>
+                    <li><a href="{% url 'cadastrar' %}">Cadastro</a></li>
+                {% endif %}
+            </ul>
         </nav>
     </header>
 
-    <main class="container mt-4">
+    <main>
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="text-center py-3 mt-5 bg-light">
+    <footer>
         <p>&copy; 2025 La Bella Fashion. Todos os direitos reservados.</p>
     </footer>
 

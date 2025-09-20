@@ -1,25 +1,71 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header text-center">
-          <h2>Criar Conta</h2>
+    <div class="col-md-8">
+      <h2 class="text-center">Criar Conta</h2>
+      <form method="post">
+        {% csrf_token %}
+
+        {% if user_form.errors or perfil_form.errors %}
+            <div class="alert alert-danger">
+                <strong>Por favor, corrija os erros abaixo:</strong>
+                <ul>
+                    {% for field in user_form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                     {% for error in user_form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    {% for field in perfil_form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            {{ user_form.username.label_tag }}
+            {{ user_form.username }}
         </div>
-        <div class="card-body">
-          <form method="post">
-            {% csrf_token %}
-            {{ user_form|crispy }}
-            {{ perfil_form|crispy }}
-            <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-          </form>
-          <div class="mt-3 text-center">
-            <p>Já tem uma conta? <a href="{% url 'usuario_login' %}">Faça login</a></p>
-          </div>
+        <div class="form-group">
+            {{ user_form.email.label_tag }}
+            {{ user_form.email }}
         </div>
+        <div class="form-group">
+            {{ user_form.password.label_tag }}
+            {{ user_form.password }}
+        </div>
+        <div class="form-group">
+            {{ user_form.password2.label_tag }}
+            {{ user_form.password2 }}
+        </div>
+        <hr>
+        <div class="form-group">
+            {{ perfil_form.cpf.label_tag }}
+            {{ perfil_form.cpf }}
+        </div>
+        <div class="form-group">
+            {{ perfil_form.data_nascimento.label_tag }}
+            {{ perfil_form.data_nascimento }}
+        </div>
+        <div class="form-group">
+            {{ perfil_form.telefone.label_tag }}
+            {{ perfil_form.telefone }}
+        </div>
+        <div class="form-group">
+            {{ perfil_form.genero.label_tag }}
+            {{ perfil_form.genero }}
+        </div>
+        <button type="submit" class="btn w-100">Cadastrar</button>
+      </form>
+      <div class="mt-3 text-center">
+        <p>Já tem uma conta? <a href="{% url 'usuario_login' %}">Faça login</a></p>
       </div>
     </div>
   </div>

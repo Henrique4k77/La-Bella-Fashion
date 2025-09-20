@@ -16,20 +16,17 @@ def cadastrar(request):
             user.set_password(user_form.cleaned_data['password'])
             user.save()
 
+            # Cria o perfil, mas não salva no banco ainda
             perfil = perfil_form.save(commit=False)
+            # Associa o perfil ao usuário recém-criado
             perfil.usuario = user
+            # Copia o nome do formulário de usuário para o campo nome_completo do perfil
+            perfil.nome_completo = user_form.cleaned_data['username']
+            # Salva o perfil completo no banco de dados
             perfil.save()
 
             messages.success(request, 'Conta criada com sucesso! Faça login para continuar.')
             return redirect('usuario_login')
-        else:
-            # Adiciona erros dos formulários às mensagens para depuração
-            if user_form.errors:
-                for field, error in user_form.errors.items():
-                    messages.error(request, f"{field}: {error}")
-            if perfil_form.errors:
-                for field, error in perfil_form.errors.items():
-                    messages.error(request, f"{field}: {error}")
 
     else:
         user_form = UserRegistrationForm()

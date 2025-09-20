@@ -1,0 +1,50 @@
+{% if carrinho and carrinho.itens.all %}
+    <div id="carrinho-container">
+        <table class="carrinho-tabela">
+            <thead>
+                <tr>
+                    <th class="col-produto">Produto</th>
+                    <th class="col-quantidade" style="width: 25%;">Quantidade</th>
+                    <th class="col-preco">Preço Unitário</th>
+                    <th class="col-subtotal">Subtotal</th>
+                    <th class="col-acoes">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carrinho.itens.all %}
+                <tr>
+                    <td data-label="Produto" class="col-produto">{{ item.produto.nome }}</td>
+                    
+                    <td data-label="Quantidade" class="col-quantidade">
+                        <form hx-post="{% url 'pedido:atualizar_quantidade' item.id %}" hx-target="#carrinho-container" hx-swap="outerHTML" class="d-flex align-items-center justify-content-end justify-content-md-center">
+                            {% csrf_token %}
+                            <input type="number" name="quantidade" value="{{ item.quantidade }}" min="0" class="form-control me-2" style="width: 75px; text-align: center;">
+                            <button type="submit" class="btn btn-sm">Atualizar</button>
+                        </form>
+                    </td>
+
+                    <td data-label="Preço Unitário" class="col-preco">R$ {{ item.preco_unitario|floatformat:2 }}</td>
+                    <td data-label="Subtotal" class="col-subtotal">R$ {{ item.total_item|floatformat:2 }}</td>
+
+                    <td data-label="Ação" class="col-acoes">
+                        <a href="#" hx-post="{% url 'pedido:remover_do_carrinho' item.id %}" hx-target="#carrinho-container" hx-swap="outerHTML" class="btn btn-secondary btn-sm">Remover</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="carrinho-total">
+            <h4>Total do Pedido: <strong>R$ {{ carrinho.total|floatformat:2 }}</strong></h4>
+        </div>
+
+        <div class="carrinho-botoes">
+            <a href="{% url 'catalogo' %}" class="btn btn-secondary me-2">Continuar Comprando</a>
+            <a href="{% url 'pedido:finalizar_pedido' %}" class="btn">Finalizar Pedido</a>
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-info text-center" role="alert">
+        Seu carrinho está vazio. <a href="{% url 'catalogo' %}" class="alert-link">Comece a comprar!</a>
+    </div>
+{% endif %}

@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-6">
       {% if produto.imagem %}
-        <img src="{{ produto.imagem.url }}" class="img-fluid" alt="{{ produto.nome }}">
+        <img src="{{ produto.imagem.url }}" class="product-image-detail" alt="{{ produto.nome }}">
       {% endif %}
     </div>
     <div class="col-md-6">
@@ -13,8 +13,9 @@
       <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
       <p><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
       <button hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" 
-              hx-swap="none" 
-              class="btn btn-success">
+              hx-target="#toast-container" 
+              hx-swap="beforeend" 
+              class="btn">
         Adicionar ao Carrinho
       </button>
     </div>

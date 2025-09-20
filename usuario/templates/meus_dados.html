@@ -2,45 +2,43 @@
 {% load static %}
 
 {% block content %}
-<main class="container mt-5 mb-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card p-4 shadow">
-                <div class="text-center mb-4">
-                    {% if perfil.foto_perfil %}
-                        <img src="{{ perfil.foto_perfil.url }}" alt="Foto de perfil" class="rounded-circle mb-3 profile-pic">
-                    {% else %}
-                        <img src="{% static 'img/default-profile.png' %}" alt="Foto de perfil padrão" class="rounded-circle mb-3 profile-pic">
-                    {% endif %}
-                    
-                    <h2 class="card-title">{{ usuario.username }}</h2>
-                    <p class="text-muted">{{ usuario.email }}</p>
-                </div>
-                <hr>
-                <div class="card-body">
-                    <h5 class="card-subtitle mb-3 text-muted">Meus Dados</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <strong>Nome completo:</strong> {{ perfil.nome_completo }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Telefone:</strong> {{ perfil.telefone }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Endereço:</strong> {{ perfil.endereco }}
-                        </li>
-                    </ul>
-                </div>
-                <div class="mt-4 text-center">
-                    <a href="{% url 'editar_dados' %}" class="btn btn-warning me-2">Editar meus dados</a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
-                        Excluir perfil
-                    </button>
-                </div>
+            <div class="text-center mb-4">
+                {% if perfil.foto_perfil %}
+                    <img src="{{ perfil.foto_perfil.url }}" alt="Foto de perfil" class="profile-pic">
+                {% else %}
+                    <img src="{% static 'img/default-profile.png' %}" alt="Foto de perfil padrão" class="profile-pic">
+                {% endif %}
+                
+                <h2>{{ usuario.username }}</h2>
+                <p>{{ usuario.email }}</p>
+            </div>
+            <hr>
+            <div class="minha-conta-dados">
+                <h5 class="text-center">Meus Dados</h5>
+                <ul>
+                    <li>
+                        <strong>Nome completo:</strong> {{ perfil.nome_completo }}
+                    </li>
+                    <li>
+                        <strong>Telefone:</strong> {{ perfil.telefone }}
+                    </li>
+                    <li>
+                        <strong>Endereço:</strong> {{ perfil.endereco }}
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="{% url 'editar_dados' %}" class="btn">Editar meus dados</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
+                    Excluir perfil
+                </button>
             </div>
         </div>
     </div>
-</main>
+</div>
 
 <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" aria-labelledby="confirmarExclusaoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
