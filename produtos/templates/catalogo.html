@@ -14,12 +14,7 @@
                     <p class="card-text">{{ produto.descricao|truncatewords:15 }}</p>
                     <p class="card-text"><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
                     <a href="{% url 'detalhes_produto' produto.id %}" class="btn btn-primary">Ver Detalhes</a>
-                    <button hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" 
-                            hx-target="#toast-container" 
-                            hx-swap="beforeend" 
-                            class="btn btn-secondary">
-                        Adicionar ao Carrinho
-                    </button>
+                    <a href="{% url 'pedido:adicionar_ao_carrinho' produto.id %}">ADD</a>
                 </div>
             </div>
         </div>
