@@ -31,7 +31,7 @@
                 </ul>
             </div>
             <div class="mt-4 text-center">
-                <a href="{% url 'editar_dados' %}" class="btn">Editar meus dados</a>
+                <a href="{% url 'usuario:editar_dados' %}" class="btn">Editar meus dados</a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
                     Excluir perfil
                 </button>
@@ -52,7 +52,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a href="{% url 'excluir_perfil' %}" class="btn btn-danger">Sim, Excluir Perfil</a>
+                <a href="{% url 'usuario:excluir_perfil' %}" class="btn btn-danger">Sim, Excluir Perfil</a>
             </div>
         </div>
     </div>

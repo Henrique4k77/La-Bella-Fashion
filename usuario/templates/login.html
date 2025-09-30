@@ -19,7 +19,7 @@
                 </div>
             {% endif %}
 
-            <form method="post" action="{% url 'usuario_login' %}">
+            <form method="post" action="{% url 'usuario:login' %}">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="id_username">Nome de usuário / Email</label>

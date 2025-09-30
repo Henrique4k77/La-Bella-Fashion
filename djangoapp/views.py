@@ -1,7 +1,17 @@
 from django.shortcuts import render
+from pedido.models import Pedido
 
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        carrinho_aberto = Pedido.objects.filter(usuario=request.user, status='carrinho').first()
+        if carrinho_aberto:
+            carrinho_count = carrinho_aberto.itens.count()
+        else:
+            carrinho_count = 0
+    else:
+        carrinho_count = 0
+
+    return render(request, 'home.html', {'carrinho_count': carrinho_count})
 
 def login(request):
     return render(request, 'login.html')
