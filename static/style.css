@@ -1,5 +1,6 @@
 /* Importando fontes */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@500&display=swap');
 
 :root {
   --rosa-principal: #f48fb1;
@@ -17,42 +18,125 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: var(--texto-escuro);
   background: linear-gradient(to bottom, var(--rosa-claro), var(--rosa-medio));
   min-height: 100vh;
 }
 
 /* Cabeçalho */
-header {
+.header {
   background: var(--branco);
-  padding: 1rem 2rem;
+  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-header h1 {
-  font-family: 'Great Vibes', cursive;
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
   font-size: 2rem;
   color: var(--rosa-principal);
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-nav a {
+.nav-links a {
+  margin-left: 20px;
+  font-size: 1.1em;
   text-decoration: none;
   color: var(--texto-escuro);
-  font-weight: 500;
 }
 
-nav a:hover {
+.nav-links a:hover {
   color: var(--rosa-principal);
+}
+
+/* Estilo do Contador do Carrinho */
+.cart-icon-link {
+    position: relative;
+    /* Garante que o ícone do carrinho se mova junto com o contador, se necessário */
+}
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 0.7em;
+    padding: 0.3em 0.5em;
+    /* Usa o estilo de badge do Bootstrap (bg-danger) */
+}
+.user-name {
+    font-weight: 600;
+    color: var(--rosa-principal);
+    margin-right: 5px;
+}
+.nav-links .btn-sm-secondary {
+    /* Estilo para o botão de cadastro no header, se aplicável */
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.9em;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    background: var(--rosa-principal);
+    color: var(--branco);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #ec407a;
+}
+
+/* Seção de Destaques da Home */
+.highlights-section {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+.highlights-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.highlights-section .subtitle {
+    font-size: 1.1rem;
+    color: #777;
+    margin-bottom: 3rem;
+}
+.highlight-card {
+    padding: 15px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.highlight-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.highlight-card h3 {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 15px;
 }
 
 /* Containers gerais */
@@ -66,8 +150,12 @@ nav a:hover {
 }
 
 /* Títulos */
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
 h2 {
-  font-family: 'Great Vibes', cursive;
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: var(--texto-escuro);
@@ -99,6 +187,11 @@ input, select {
 input:focus, select:focus {
   border-color: var(--rosa-principal);
   box-shadow: 0 0 5px rgba(244,143,177,0.5);
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  font-size: 16px;
+  color: #333;
 }
 
 
@@ -134,6 +227,17 @@ button:hover, .btn:hover {
   color: var(--branco);
 }
 
+.btn-details {
+    background: var(--rosa-principal);
+    color: var(--branco);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+    border: none;
+}
+
 /* Card de produto */
 .product-card {
     border: none;
@@ -152,6 +256,43 @@ button:hover, .btn:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     max-width: 100%;
 }
+
+.catalog-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.product-item {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.product-image {
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #b76e79;
+}
+
+/* NOVO: Ações do Produto (Botões no Catálogo) */
+.product-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.product-actions .btn {
+    width: auto; /* Para que os botões não ocupem 100% */
+    min-width: 100px; /* Largura mínima para consistência */
+}
+
 
 /* Tabela do Carrinho */
 .carrinho-tabela {
@@ -228,6 +369,10 @@ button:hover, .btn:hover {
     font-size: 1.8rem;
   }
 
+  .catalog-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   .carrinho-tabela thead {
       display: none; /* Ocultar cabeçalho em telas pequenas */
   }
@@ -259,6 +404,15 @@ button:hover, .btn:hover {
       width: 100%;
       margin-bottom: 0.5rem;
   }
+
+    .product-details-content {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    .product-title {
+        font-size: 2.2rem;
+    }
 }
 
 /* Alertas e Mensagens */
@@ -302,4 +456,90 @@ button:hover, .btn:hover {
 
 .btn-close {
   filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* NOVO: Estilo para Rodapé Completo */
+.footer-complete {
+    background: var(--rosa-medio);
+    color: var(--texto-escuro);
+    padding: 3rem 0 1rem;
+}
+
+.footer-col {
+    margin-bottom: 20px;
+}
+
+.footer-col h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--rosa-principal);
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li a {
+    color: var(--texto-escuro);
+    text-decoration: none;
+    line-height: 2.2;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--rosa-principal);
+}
+
+.footer-complete .copyright {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+
+.product-details-container {
+    padding: 3rem;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.product-image-gallery {
+    text-align: center;
+}
+
+.product-details-content {
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.product-title {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.product-category {
+    font-size: 1.1rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.product-price-detail {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--rosa-principal);
+    margin-bottom: 2rem;
+}
+
+.btn-add-to-cart {
+    width: auto;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
 }

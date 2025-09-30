@@ -2,38 +2,40 @@
 {% load static %}
 
 {% block content %}
-<div class="container text-center">
-    <div class="banner my-5">
-        <h2>Elegância que combina com você</h2>
-        <p>Sua moda, sua paixão.</p>
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Bem-vinda à La Bella Fashion</h1>
+        <p>Descubra as últimas tendências da moda e encontre o seu estilo perfeito.</p>
+        <a href="{% url 'catalogo' %}" class="btn btn-primary">Ver Catálogo</a>
     </div>
+</section>
 
-    <section class="product-section">
-        <h2>Destaques da Coleção</h2>
-        <div class="row">
-            {% for produto in produtos %}
-            <div class="col-md-4">
-                <div class="card product-card mb-4">
-                    <a href="{% url 'detalhes_produto' produto.id %}">
-                    {% if produto.imagem %}
-                        <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}">
-                    {% else %}
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Sem imagem">
-                    {% endif %}
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ produto.nome }}</h5>
-                        <p class="card-text">R$ {{ produto.preco }}</p>
-                        <a href="{% url 'detalhes_produto' produto.id %}" class="btn btn-primary">Ver detalhes</a>
-                    </div>
-                </div>
+<section class="highlights-section container">
+    <h2>Destaques da Coleção</h2>
+    <p class="subtitle">Descubra as peças mais populares do momento.</p>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="highlight-card">
+                <img src="{% static 'img/destaque1.jpg' %}" alt="Vestidos" class="img-fluid rounded-3">
+                <h3>Vestidos Elegantes</h3>
+                <a href="{% url 'catalogo' %}?categoria=vestidos" class="btn btn-secondary">Ver Agora</a>
             </div>
-            {% empty %}
-                <div class="col-12">
-                    <p>Nenhum produto em destaque no momento.</p>
-                </div>
-            {% endfor %}
         </div>
-    </section>
-</div>
+        <div class="col-md-4">
+            <div class="highlight-card">
+                <img src="{% static 'img/destaque2.jpg' %}" alt="Jeans" class="img-fluid rounded-3">
+                <h3>Novidades em Jeans</h3>
+                <a href="{% url 'catalogo' %}?categoria=jeans" class="btn btn-secondary">Ver Agora</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="highlight-card">
+                <img src="{% static 'img/destaque3.jpg' %}" alt="Acessórios" class="img-fluid rounded-3">
+                <h3>Acessórios Únicos</h3>
+                <a href="{% url 'catalogo' %}?categoria=acessorios" class="btn btn-secondary">Ver Agora</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

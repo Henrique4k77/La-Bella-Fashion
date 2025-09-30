@@ -1,20 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4">Catálogo de Produtos</h2>
-    <div class="row">
+<div class="container">
+    <h2>Nosso Catálogo</h2>
+    <div class="catalog-container">
         {% for produto in produtos %}
-        <div class="col-md-4 mb-4">
-            <div class="card product-card">
-                {% if produto.imagem %}
-                    <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}">
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ produto.nome }}</h5>
-                    <p class="card-text">{{ produto.descricao|truncatewords:15 }}</p>
-                    <p class="card-text"><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
-                    <a href="{% url 'detalhes_produto' produto.id %}" class="btn btn-primary">Ver Detalhes</a>
-                    <a href="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" class="btn btn-success">Adicionar ao Carrinho</a>
+        <div class="product-card">
+            <div class="product-item">
+                <a href="{% url 'detalhes_produto' produto.id %}">
+                    {% if produto.imagem %}
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="img-fluid product-image">
+                    {% endif %}
+                </a>
+                <h3>{{ produto.nome }}</h3>
+                <p class="product-price">R$ {{ produto.preco|floatformat:2 }}</p>
+                <div class="product-actions">
+                    <a href="{% url 'detalhes_produto' produto.id %}" class="btn btn-secondary btn-sm">Detalhes</a>
+                    
+                    {% if user.is_authenticated %}
+                        {# Formulário HTMX para adicionar ao carrinho se o usuário estiver logado #}
+                        <form hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" hx-trigger="submit" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </form>
+                    {% else %}
+                        {# Link para a página de login se o usuário não estiver logado #}
+                        <a href="{% url 'usuario:cadastrar' %}?next={{ request.path }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-cart-plus"></i> Add
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

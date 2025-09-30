@@ -11,16 +11,9 @@ class Perfil(models.Model):
     
     # Campo para o nome completo do usuário
     nome_completo = models.CharField(max_length=100, blank=True, null=True)
-
-    # Campo para o telefone do usuário
-    telefone = models.CharField(max_length=20, blank=True, null=True)
     
-    # Campo para o endereço completo do usuário
-    endereco = models.CharField(max_length=255, blank=True, null=True)
-    
-    # Novo campo para a foto de perfil
-    # A foto será salva na pasta 'media/fotos_perfil'
-    foto_perfil = models.ImageField(upload_to='fotos_perfil', blank=True, null=True)
+    # Campo para a foto de perfil do usuário
+    foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True, null=True)
 
     def __str__(self):
-        return f'Perfil de {self.usuario.username}' 
+        return self.usuario.username

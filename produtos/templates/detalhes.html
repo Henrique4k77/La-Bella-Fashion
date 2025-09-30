@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-5">
+<div class="container product-details-container mt-5">
   <div class="row">
     <div class="col-md-6">
-      {% if produto.imagem %}
-        <img src="{{ produto.imagem.url }}" class="product-image-detail" alt="{{ produto.nome }}">
-      {% endif %}
+      <div class="product-image-gallery">
+        {% if produto.imagem %}
+          <img src="{{ produto.imagem.url }}" class="product-image-detail" alt="{{ produto.nome }}">
+        {% endif %}
+      </div>
     </div>
     <div class="col-md-6">
-      <h2>{{ produto.nome }}</h2>
-      <p>{{ produto.descricao }}</p>
-      <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
-      <p><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
-      <button hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" 
-              hx-target="#toast-container" 
-              hx-swap="beforeend" 
-              class="btn">
-        Adicionar ao Carrinho
-      </button>
+      <div class="product-details-content">
+        <h2 class="product-title">{{ produto.nome }}</h2>
+        <p class="product-category"><strong>Categoria:</strong> {{ produto.categoria }}</p>
+        <p class="product-description">{{ produto.descricao }}</p>
+        <p class="product-price-detail">R$ {{ produto.preco|floatformat:2 }}</p>
+        <button hx-post="{% url 'pedido:adicionar_ao_carrinho' produto.id %}" 
+                hx-trigger="click"
+                hx-swap="innerHTML"
+                hx-target="#toast-container" 
+                class="btn btn-primary btn-add-to-cart">
+          <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -26,7 +26,7 @@ def cadastrar(request):
             perfil.save()
 
             messages.success(request, 'Conta criada com sucesso! Faça login para continuar.')
-            return redirect('usuario_login')
+            return redirect('usuario:login')
 
     else:
         user_form = UserRegistrationForm()
@@ -59,7 +59,7 @@ def login(request):
         user = authenticate(request, username=username_to_auth, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('meus_dados')
+            return redirect('usuario:meus_dados')
         else:
             messages.error(request, 'Usuário ou senha inválidos.')
             return render(request, 'login.html')
@@ -90,7 +90,7 @@ def editar_dados(request):
             user_form.save()
             perfil_form.save()
             messages.success(request, 'Seus dados foram atualizados com sucesso!')
-            return redirect('meus_dados')
+            return redirect('usuario:meus_dados')
     else:
         user_form = UserUpdateForm(instance=request.user)
         perfil, criado = Perfil.objects.get_or_create(usuario=request.user)
@@ -109,11 +109,11 @@ def excluir_perfil(request):
     if request.method == 'POST':
         request.user.delete()
         messages.success(request, 'Seu perfil foi excluído com sucesso.')
-        return redirect('usuario_login')
+        return redirect('usuario:login')
     
     return render(request, 'excluir_perfil.html', {'usuario': request.user})
 
 
 def sair(request):
     auth_logout(request)
-    return redirect('usuario_login')
+    return redirect('usuario:login')

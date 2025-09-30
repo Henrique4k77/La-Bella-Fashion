@@ -8,7 +8,7 @@ from .views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('usuario/', include('usuario.urls')),
+    path('usuario/', include(('usuario.urls', 'usuario'), namespace='usuario')),
     path('produtos/', include('produtos.urls')),
     path('pedido/', include('pedido.urls', namespace='pedido')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
