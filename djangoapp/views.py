@@ -3,7 +3,7 @@ from pedido.models import Pedido
 
 def home(request):
     if request.user.is_authenticated:
-        carrinho_aberto = Pedido.objects.filter(usuario=request.user, status='carrinho').first()
+        carrinho_aberto = Pedido.objects.filter(cliente=request.user, status='carrinho').first()
         if carrinho_aberto:
             carrinho_count = carrinho_aberto.itens.count()
         else:

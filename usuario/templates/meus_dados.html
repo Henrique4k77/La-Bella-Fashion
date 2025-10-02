@@ -9,7 +9,7 @@
                 {% if perfil.foto_perfil %}
                     <img src="{{ perfil.foto_perfil.url }}" alt="Foto de perfil" class="profile-pic">
                 {% else %}
-                    <img src="{% static 'img/default-profile.png' %}" alt="Foto de perfil padrão" class="profile-pic">
+                    <i class="fa-solid fa-user"></i>
                 {% endif %}
                 
                 <h2>{{ usuario.username }}</h2>

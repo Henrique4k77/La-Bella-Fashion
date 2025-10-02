@@ -28,10 +28,7 @@ class PerfilRegistrationForm(forms.ModelForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'email')
-        labels = {
-            'username': 'Nome Completo',
-        }
+        fields = ['email']
 
 class PerfilUpdateForm(forms.ModelForm):
     class Meta:
